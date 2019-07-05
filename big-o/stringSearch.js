@@ -32,8 +32,8 @@
 // If they're in a groove, have them finish out this approach and pseudocode it;
 // then ask them how they would do this without generating a second copy of the haystack.
 
-function stringSearch (haystack, needle) {
-    
+function stringSearch (needle, haystack) {
+    for (lethIdx = 0;)
 }
 
 module.exports = {
