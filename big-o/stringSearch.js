@@ -33,8 +33,21 @@
 // then ask them how they would do this without generating a second copy of the haystack.
 
 function stringSearch (needle, haystack) {
-    for (lethIdx = 0;)
+    for (let hIdx = 0; hIdx <= haystack.length; hIdx++) {
+        //O(n * ...) where n is haystack.length
+        for (let nIdx = 0; nIdx < needle.length; nIdx++) {
+            // O(m * ...) where m is needle.length
+            const hPointer = hIdx + nIdx;
+            if (haystack[hPointer] !== needle[nIdx]) break;
+            // O(1) constant
+            if(nIdx === needle.length - 1) return hIdx;
+            // O(1) constant
+        }
+    }
+    return -1;
 }
+
+// O(1) space | O(n * m) time
 
 module.exports = {
     stringSearch
