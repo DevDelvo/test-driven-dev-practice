@@ -4,6 +4,7 @@ const { should } = require('chai').should();
 
 const { stringSearch } = require("../big-o/stringSearch");
 const { dictionaryWordFinder } = require("../big-o/dictionaryWordFinder");
+const { fib, fibRecursive, fibMemo } = require("../big-o/fib");
 
 describe("String Search", function() {
     describe('should return the index of the first appearance of one string (the needle) inside of another (the haystack).', function() {
@@ -49,6 +50,61 @@ describe("Dictionary Word Finder", function() {
     describe('If word doesn\'t exist, it should return undefined', function() {
         it('should return undefined when word is wizbing', function() {
             expect(dictionaryWordFinder('wizbing', dictionary)).to.deep.equal(undefined);
+        });
+    });
+});
+
+describe("fibonacci sequences", function() {
+    const fibNums = [null, 0, 1, 1, 2, 3, 5, 8, 13, 21, 34];
+    describe("it should return the nth number in the fibonacci sequence", function() {
+        it("should return 0 when n is 1", function() {
+            expect(fib(1)).to.deep.equal(fibNums[1]);
+        });
+        it("should return 1 when n is 2", function() {
+            expect(fib(2)).to.deep.equal(fibNums[2]);
+        });
+        it("should return 3 when n is 5", function() {
+            expect(fib(5)).to.deep.equal(fibNums[5]);
+        });
+        it("should return 8 when 7", function() {
+            expect(fib(7)).to.deep.equal(fibNums[7]);
+        });
+        it("should return 34 when n is 10", function() {
+            expect(fib(10)).to.deep.equal(fibNums[10]);
+        });
+    });
+    describe("RECURSIVE it should return the nth number in the fibonacci sequence", function() {
+        it("should return 0 when n is 1", function() {
+            expect(fibRecursive(1)).to.deep.equal(fibNums[1]);
+        });
+        it("should return 1 when n is 2", function() {
+            expect(fibRecursive(2)).to.deep.equal(fibNums[2]);
+        });
+        it("should return 3 when n is 5", function() {
+            expect(fibRecursive(5)).to.deep.equal(fibNums[5]);
+        });
+        it("should return 8 when 7", function() {
+            expect(fibRecursive(7)).to.deep.equal(fibNums[7]);
+        });
+        it("should return 34 when n is 10", function() {
+            expect(fibRecursive(10)).to.deep.equal(fibNums[10]);
+        });
+    });
+    describe("MEMOIZATION it should return the nth number in the fibonacci sequence", function() {
+        it("should return 0 when n is 1", function() {
+            expect(fibMemo(1)).to.deep.equal(fibNums[1]);
+        });
+        it("should return 1 when n is 2", function() {
+            expect(fibMemo(2)).to.deep.equal(fibNums[2]);
+        });
+        it("should return 3 when n is 5", function() {
+            expect(fibMemo(5)).to.deep.equal(fibNums[5]);
+        });
+        it("should return 8 when 7", function() {
+            expect(fibRecursive(7)).to.deep.equal(fibNums[7]);
+        });
+        it("should return 34 when n is 10", function() {
+            expect(fibMemo(10)).to.deep.equal(fibNums[10]);
         });
     });
 });
