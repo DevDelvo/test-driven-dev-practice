@@ -52,20 +52,24 @@ class PriorityQueue {
             this.first = newNode;
         } else {
             let current = this.first;
-            while (current.next && current.next.priority > priority) {
+            while (current.next && current.next.priority >= priority) {
                 current = current.next;
             }
             newNode.next = current.next;
-            current = newNode;
+            current.next = newNode;
         }
     }
 
     peek() {
-        return 
+        return this.first.val;
     }
 
     popMax() {
-
+        // console.log(this.first);
+        let max = this.first;
+        this.first = this.first.next;
+        // console.log(this.first);
+        return max.val;
     }
 }
 

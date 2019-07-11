@@ -14,9 +14,12 @@ describe("Node", function() {
 })
 
 describe("Priority Queue", function() {
-    const pq = new PriorityQueue();
-    // pq.insert('Jill, concussion', 7);
-    // pq.insert('John, stomach pain', 5);
+    let pq = new PriorityQueue(); 
+    beforeEach(function() {
+        pq = new PriorityQueue()
+        pq.insert('Jill, concussion', 7);
+        pq.insert('John, stomach pain', 5);
+    });
     // pq.peek() // ==> 'Jill, concussion'
     // pq.peek() // ==> 'Jill, concussion'  // Jill is still in the PQ
     // pq.insert('Dave, sprained ankle', 1);
@@ -34,16 +37,23 @@ describe("Priority Queue", function() {
             });
             it("should take in two arguments", function() {
                 let spy = sinon.spy(pq, 'insert');
-                pq.insert('Jill, concussion', 7);
+                pq.insert('Dave, sprained ankle', 1);
                 expect(spy.firstCall.args.length).to.deep.equal(2);
             });
-            it("should insert data into queue", function() {
+            describe("should insert data into queue", function() {
                 it("next should be null if it is the only item in queue", function() {
+                    pq = new PriorityQueue();
+                    pq.insert('Jill, concussion', 7);
                     expect(pq.first).to.deep.equal({ val: "Jill, concussion", priority: 7, next: null });
                 });
                 it("should point to the next priority in the queue", function() {
-                    pq.insert('John, stomach pain', 5);
-                    expect(pq.first.next).to.deep.equal({ val: "John, stomach pain", priority: 5 });
+                    console.log('point to next: ', pq)
+                    expect(pq.first.next.val).to.deep.equal({ val: "John, stomach pain", priority: 5, next: null });
+                    pq.insert('Dave, sprained ankle', 1);
+                    pq.insert('Bob, breathing problems', 8)
+                    console.log('point to next: ', pq)
+                    expect(pq.first.val).to.deep.equal('Bob, breathing problems');
+                   
                 });
             });
         });
@@ -54,10 +64,18 @@ describe("Priority Queue", function() {
             });
             describe("should return the value of the highest priority without removing it from the queue", function () {
                 it("should return the value of the highest priority", function() {
-                    
+                    expect(pq.peek()).to.deep.equal('Jill, concussion');
                 })
                 it("should not alter the size of the queue", function() {
-
+                    console.log('pq length',pq.next)
+                    let count = 0;
+                    let current = pq;
+                    while (current) {
+                        current = pq.next;
+                        count++;
+                    }
+                    console.log(count);
+                    expect(count).to.deep.equal(2);
                 });
             });
         });
@@ -68,10 +86,12 @@ describe("Priority Queue", function() {
             });
             describe("should return the item with the highest value with the highest priority and also remove it from the priority queue", function() {
                 it("should return the item with highest value with the highest priority", function() {
-
+                    expect(pq.popMax()).to.deep.equal('Jill, concussion')
                 })
                 it("should remove item from priority queue", function() {
-
+                    pq.popMax();
+                    expect(pq.peek()).to.deep.equal('John, stomach pain')
+                    // expect(pq.peek()).to.deep.equal({ val: "John, stomach pain", priority: 5 });
                 })
             });
         });
