@@ -6,7 +6,7 @@ const { stringSearch } = require("../big-o/stringSearch");
 const { dictionaryWordFinder } = require("../big-o/dictionaryWordFinder");
 const { fib, fibRecursive, fibMemo } = require("../big-o/fib");
 
-describe("String Search", function() {
+describe.skip("String Search", function() {
     describe('should return the index of the first appearance of one string (the needle) inside of another (the haystack).', function() {
         it('should return 7 when the needle is \'or\' and the haystack is \'helloworld\'', function() {
             expect(stringSearch('or', 'hello world')).to.deep.equal(7);
@@ -23,7 +23,7 @@ describe("String Search", function() {
     });
 });
 
-describe("Dictionary Word Finder", function() {
+describe.skip("Dictionary Word Finder", function() {
     const dictionary = [
         'a - Used when mentioning someone or something for the first time in a text or conversation',
         'and - Used to connect words of the same part of speech, clauses, or sentences, that are to be taken jointly',
@@ -54,7 +54,7 @@ describe("Dictionary Word Finder", function() {
     });
 });
 
-describe("fibonacci sequences", function() {
+describe.skip("fibonacci sequences", function() {
     const fibNums = [null, 0, 1, 1, 2, 3, 5, 8, 13, 21, 34];
     describe("it should return the nth number in the fibonacci sequence", function() {
         it("should return 0 when n is 1", function() {
