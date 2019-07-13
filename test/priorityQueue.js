@@ -2,7 +2,7 @@ const { Node, PriorityQueue } = require('../data-structures/priorityQueue');
 const { expect } = require('chai');
 const sinon = require('sinon');
 
-describe("Node", function() {
+describe.skip("Node", function() {
     const node = new Node('Kevin - Crazy', 10);
     it("takes in a value as a string and sets it to the val property", function() {
         expect(node.val).to.be.a('string');
@@ -13,7 +13,7 @@ describe("Node", function() {
     });
 })
 
-describe("Priority Queue", function() {
+describe.skip("Priority Queue", function() {
     let pq = new PriorityQueue(); 
     beforeEach(function() {
         pq = new PriorityQueue()
