@@ -28,16 +28,41 @@ describe("Tree tests", function() {
     });
     console.log(a)
     describe("Node", function(){
-        it("takes in a string value and sets it to the value as a string", function() {
-            expect(a.value).to.be.equal('a');
-            expect(b.value).to.be.equal('b');
+        it("takes in a string value and sets the value property to that value", function() {
+            expect(a).to.have.property("value").that.is.an("string").that.deep.equals('a');
+            expect(b).to.have.property("value").that.is.an("string").that.deep.equals('b');
 
         });
-        it("has a children property and it is an array", function() {
-
-        });
-        it("can push in values into their children array", function() {
-
+        it("has a children property and it is an array that can have values pushed into it", function() {
+            expect(a).to.have.property("children").that.is.an("array").that.deep.equal([
+                {value: "b", children: [
+                    {value: "e", children: [
+                        {value: "k", children: [] }, 
+                        {value: "l", children: []}
+                    ]}
+                ]}, 
+                {value: "c", children: [
+                    {value: "f", children: []},
+                    {value: "g", children: []},
+                    {value: "h", children: [
+                        {value: "m", children: []}
+                    ]}
+                ]}, 
+                {value: "d", children: [
+                    {value: "i", children: [] }, 
+                    {value: "j", children: []}
+                ]}
+            ]);
+            expect(b).to.have.property("children").that.is.an("array").that.deep.equal([
+                {value: "e", children: [
+                    {value: "k", children: [] }, 
+                    {value: "l", children: []}
+                ]}
+            ]);
+            expect(m).to.have.property("children").that.is.an("array").that.deep.equals([]);
+            expect(d).to.have.property("children").that.is.an("array").that.deep.equals([
+                {value: "i", children: [] }, {value: "j", children: []}
+            ]);
         });
     });
 
