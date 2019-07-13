@@ -48,7 +48,7 @@ describe("Priority Queue", function() {
                 });
                 it("should point to the next priority in the queue", function() {
                     console.log('point to next: ', pq)
-                    expect(pq.first.next.val).to.deep.equal({ val: "John, stomach pain", priority: 5, next: null });
+                    expect(pq.first.next).to.deep.equal({ val: "John, stomach pain", priority: 5, next: null });
                     pq.insert('Dave, sprained ankle', 1);
                     pq.insert('Bob, breathing problems', 8)
                     console.log('point to next: ', pq)
@@ -67,14 +67,12 @@ describe("Priority Queue", function() {
                     expect(pq.peek()).to.deep.equal('Jill, concussion');
                 })
                 it("should not alter the size of the queue", function() {
-                    console.log('pq length',pq.next)
                     let count = 0;
-                    let current = pq;
+                    let current = pq.first;
                     while (current) {
-                        current = pq.next;
+                        current = current.next;
                         count++;
                     }
-                    console.log(count);
                     expect(count).to.deep.equal(2);
                 });
             });
