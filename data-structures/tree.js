@@ -9,22 +9,28 @@
 // The function will iterate through the child nodes, calling the callback function on each of them. 
 // The difference between them is the order in which they iterate.
 
-export function node(value) {
+function node(value) {
     return {
       value,
       children: []
     }
   }
 
-export function breadthFirst(startNode, callback) {
+function breadthFirst(startNode, callback) {
 
 }
 
-export function depthFirstPreOrder(startNode, callback) {
+function depthFirstPreOrder(startNode, callback) {
 
 }
 
-export function depthFirstPostOrder(startNode, callback) {
+function depthFirstPostOrder(startNode, callback) {
 
 }
-  
+
+module.exports = {
+    node,
+    breadthFirst,
+    depthFirstPreOrder,
+    depthFirstPostOrder
+}

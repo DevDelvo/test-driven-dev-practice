@@ -4,20 +4,21 @@ const sinon = require('sinon');
 
 
 describe("Tree tests", function() {
+    let a, b, c, d, e, f, g, h, i , j, k, l, m
     beforeEach(function() {
-        var a = node('a');
-        var b = node('b');
-        var c = node('c');
-        var d = node('d');
-        var e = node('e');
-        var f = node('f');
-        var g = node('g');
-        var h = node('h');
-        var i = node('i');
-        var j = node('j');
-        var k = node('k');
-        var l = node('l');
-        var m = node('m'); 
+        a = node('a');
+        b = node('b');
+        c = node('c');
+        d = node('d');
+        e = node('e');
+        f = node('f');
+        g = node('g');
+        h = node('h');
+        i = node('i');
+        j = node('j');
+        k = node('k');
+        l = node('l');
+        m = node('m'); 
         a.children.push(b,c,d);
         b.children.push(e);
         e.children.push(k,l);
@@ -25,7 +26,7 @@ describe("Tree tests", function() {
         h.children.push(m);
         d.children.push(i,j);
     });
-
+    console.log(a)
     describe("Node", function(){
         it("takes in a string value and sets it to the value as a string", function() {
             expect(a.value).to.be.equal('a');
