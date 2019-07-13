@@ -17,7 +17,15 @@ function node(value) {
   }
 
 function breadthFirst(startNode, callback) {
-
+  const queue = [startNode];
+  while (queue.length) {
+    const node = queue.shift();
+    callback(node.value);
+    queue.push(...node.children);
+    // queue = queue.concat(node.children) 
+    // or
+    // queue.push.apply(queue, node.children);
+  }
 }
 
 function depthFirstPreOrder(startNode, callback) {

@@ -26,7 +26,6 @@ describe("Tree tests", function() {
         h.children.push(m);
         d.children.push(i,j);
     });
-    console.log(a)
     describe("Node", function(){
         it("takes in a string value and sets the value property to that value", function() {
             expect(a).to.have.property("value").that.is.an("string").that.deep.equals('a');
@@ -67,22 +66,57 @@ describe("Tree tests", function() {
     });
 
     describe("iterator functions", function() {
+        const cb = () => {
+            return true;
+        }
         it("takes in a starting node as the first argument", function() {
-
+            const spy = sinon.spy(breadthFirst);
+            const spy2 = sinon.spy(depthFirstPreOrder);
+            const spy3 = sinon.spy(breadthFirst);
+            spy(a, cb);
+            spy2(a, cb);
+            spy3(a, cb);
+            expect(spy.firstCall.args[0]).to.deep.equal(a);
+            expect(spy2.firstCall.args[0]).to.deep.equal(a);
+            expect(spy3.firstCall.args[0]).to.deep.equal(a);
         });
         it("They take in a call back as a second argument", function() {
-
+            const spy = sinon.spy(breadthFirst);
+            const spy2 = sinon.spy(depthFirstPreOrder);
+            const spy3 = sinon.spy(breadthFirst);
+            spy(a, cb);
+            spy2(a, cb);
+            spy3(a, cb);
+            expect(spy.firstCall.args[1]).to.deep.equal(cb);
+            expect(spy2.firstCall.args[1]).to.deep.equal(cb);
+            expect(spy3.firstCall.args[1]).to.deep.equal(cb);
         });
 
         describe("breadthFirst", function() {
+            it("should log out the values in order", function() {
+                const test = [];
+                breadthFirst(a, (val) => test.push(val));
+                const breadthFirstRes = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"];
+                expect(test).to.deep.equal(breadthFirstRes);
+                });
         });
 
         describe("depthFirstPreOrder", function() {
-
+            const test = [];
+            depthFirstPreOrder(a, (val) => test.push(val));
+            const depthFirstPreOrderRes = ["a", "b", "e", "k", "l", "c", "f", "g", "h", "m", "d", "i", "j"];
+            it("should log out the children nodes before printing the sibling nodes", function() {
+                expect(test).to.deep.equal(depthFirstPreOrderRes);
+            });
         });
 
         describe("depthFirstPostOrder", function() {
-
+            const test = [];
+            depthFirstPostOrder(a, (val) => test.push(val));
+            const depthFirstPostOrderRes = ["k", "l", "e", "b", "f", "g", "m", "h", "c", "i", "j", "d", "a"];
+            it("should not traverse the node until all of its children are reached", function() {
+                expect(test).to.deep.equal(depthFirstPostOrderRes);
+            });
         });        
     });
 });
