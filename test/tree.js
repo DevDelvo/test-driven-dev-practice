@@ -101,21 +101,21 @@ describe("Tree tests", function() {
                 });
         });
 
-        describe("depthFirstPreOrder", function() {
-            const test = [];
-            depthFirstPreOrder(a, (val) => test.push(val));
-            const depthFirstPreOrderRes = ["a", "b", "e", "k", "l", "c", "f", "g", "h", "m", "d", "i", "j"];
+        describe("depthFirstPreOrder", function() {         
             it("should log out the children nodes before printing the sibling nodes", function() {
+                const test = [];
+                depthFirstPreOrder(a, (val) => test.push(val));
+                const depthFirstPreOrderRes = ["a", "b", "e", "k", "l", "c", "f", "g", "h", "m", "d", "i", "j"];
                 expect(test).to.deep.equal(depthFirstPreOrderRes);
             });
         });
 
         describe("depthFirstPostOrder", function() {
+            it("should not traverse the node until all of its children are reached", function() {
             const test = [];
             depthFirstPostOrder(a, (val) => test.push(val));
-            const depthFirstPostOrderRes = ["k", "l", "e", "b", "f", "g", "m", "h", "c", "i", "j", "d", "a"];
-            it("should not traverse the node until all of its children are reached", function() {
-                expect(test).to.deep.equal(depthFirstPostOrderRes);
+            const depthFirstPostOrderRes = ["k", "l", "e", "b", "f", "g", "m", "h", "c", "i", "j", "d", "a"];    
+            expect(test).to.deep.equal(depthFirstPostOrderRes);
             });
         });        
     });

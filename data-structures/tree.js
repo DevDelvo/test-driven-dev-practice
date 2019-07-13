@@ -29,11 +29,17 @@ function breadthFirst(startNode, callback) {
 }
 
 function depthFirstPreOrder(startNode, callback) {
-
+  callback(startNode.value);
+  startNode.children.forEach(node => {
+    depthFirstPreOrder(node, callback);
+  });
 }
 
 function depthFirstPostOrder(startNode, callback) {
-
+  startNode.children.forEach(node => {
+    depthFirstPostOrder(node, callback);
+  });
+  callback(startNode.value);
 }
 
 module.exports = {
