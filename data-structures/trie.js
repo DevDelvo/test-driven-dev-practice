@@ -19,20 +19,41 @@
 // Interviewees may instinctively move to use includes, substring, indexOf, or to check the prefix against a slice of the text. 
 // This is fine in practice, but in an interview setting only serves to show that you happen to have read the docs, not that you understand how these methods work under the hood. 
 // Steer them away from this approach and towards something like the solution below.
+const tries = {};
+
 function findOrCreateTrie(book) {
     if (!tries.hasOwnProperty(book.id)) {
-        tries[book.id] = buildTrie(book);
+        tries[book.id] = buildTrie(book.text);
     }
-    return trie[book.id];
+    return tries[book.id];
 }
 
-function buildTrie(book) {
-    
+function buildTrie(text) {
+    const trie = {};
+    for (let i = 0; i < text.length; i++) {
+        let node = trie;
+        while(text[i] && text[i] !== " " && text[i] !== ',' && text[i] !== ".") {
+            const letter = text[i].toLowerCase();
+            node[letter] = node[letter] || { indexes: [] };
+            node[letter].indexes.push(i);
+            node = node[letter];
+            i++;
+        }
+    }
+    return trie;
 }
  
 
-function findWordsStartingWith(word, prefix) {
-
+function findWordsStartingWith(book, prefix) {
+    prefix = prefix.toLowerCase();
+    const trie = findOrCreateTrie(book);
+    let node = trie;
+    for (let i = 0; i < prefix.length; i++) {
+        const char = prefix[i];
+        node = node[char];
+        if (!node) return [];
+    }
+    return node.indexes;
 }
 
 module.exports = {

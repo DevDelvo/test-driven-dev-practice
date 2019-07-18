@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 
 
-describe("Tree tests", function() {
+describe.skip("Tree tests", function() {
     let a, b, c, d, e, f, g, h, i , j, k, l, m
     beforeEach(function() {
         a = node('a');
