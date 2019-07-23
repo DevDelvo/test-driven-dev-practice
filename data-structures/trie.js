@@ -53,7 +53,7 @@ function findWordsStartingWith(book, prefix) {
         node = node[char];
         if (!node) return [];
     }
-    return node.indexes;
+    return node.indexes.map(idx => idx - (prefix.length - 1));
 }
 
 module.exports = {
