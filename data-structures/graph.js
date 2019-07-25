@@ -12,10 +12,17 @@
 // }
 
 
-function doesPathExist(graph, start, end) {
+function doesPathExist(graph, start, end, visited = {}) {
     if(!graph[start]) return false;
     visited[start] = true;
-    
+    return graph[start].some((vertex) => {
+        if (vertex === end) return true;
+        if (!visited[vertex]) {
+            return doesPathExist(graph, vertex, end, visited);
+        } else {
+            return false;
+        }
+    })
 }
 
 module.exports = {

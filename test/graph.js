@@ -3,25 +3,24 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 
 describe("Graph tests", function() {
-    // let graph;
+    let graph, spy1, spy2, spy3, spy4;
     const spy = sinon.spy(doesPathExist);
     beforeEach(function() {
-        const graph = {
+        graph = {
             a: ['a', 'c'],
             c: ['r', 's'],
             r: ['a'],
             s: []
           }
-        const spy1 = spy(graph, 'a', 'a');
-        const spy2 = spy(graph, 'c', 'c');
-        const spy3 = spy(graph, 'r', 's');
-        const spy4 = spy(graph, 's', 'a');
+        spy(graph, 'a', 'a');
+        spy2 = spy(graph, 'c', 'c');
+        spy3 = spy(graph, 'r', 's');
+        spy4 = spy(graph, 's', 'a');
     });
 
     it("takes in a graph as its first argument", function() {
-        // spy(graph, 'a', 'a');
-        expect(spy1).to.deep.equal(graph);
-        expect(spy1).to.be.a("object")
+        expect(spy.firstCall.args[0]).to.deep.equal(graph);
+        expect(spy.firstCall).to.be.a("object")
     });
     it("takes a start and an end point as its 2nd and 3rd agruments", function() {
         expect(spy1.calledWith(graph, 'a', 'a')).to.be.true;
